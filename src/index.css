@@ -1,0 +1,628 @@
+/* Global Theme Variables - Deep Space / Cyber Blue Theme */
+:root {
+  /* Vibrant Day Theme - Enhanced (Premium) */
+  --primary-color: #2563eb;
+  /* Blue 600 - Stronger */
+  --secondary-color: #475569;
+
+  /* Richer Gradient: Crisp White -> Soft Blue -> Lavender Mist */
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 45%, #e0e7ff 100%);
+
+  --card-bg: rgba(255, 255, 255, 0.7);
+  /* Clearer glass */
+  --glass-border: rgba(203, 213, 225, 0.8);
+  /* Slate 300 - Visible on light bg */
+
+  --text-main: #0f172a;
+  --text-muted: #1e293b;
+  /* Darkened from #334155 for better visibility */
+
+  /* Transparent Navbar */
+  --navbar-bg: rgba(255, 255, 255, 0.01);
+  --navbar-border: rgba(255, 255, 255, 0.2);
+
+  --btn-bg: #3b82f6;
+  --btn-text: #ffffff;
+  --btn-border: #3b82f6;
+  --btn-hover-bg: #2563eb;
+
+  --card-border-color: rgba(99, 102, 241, 0.2);
+  /* Indigo tint border */
+
+  /* Glass Pill Variables (Light Mode) */
+  --glass-pill-bg: rgba(255, 255, 255, 0.7);
+  --glass-pill-border: rgba(59, 130, 246, 0.3);
+  --glass-pill-text-active: #0ea5e9;
+  /* Sky 500 */
+  --glass-pill-text-inactive: #475569;
+  /* Slate 600 */
+
+  --text-body-adaptive: #1e293b;
+  /* Deep Slate for Light Mode Visibility */
+
+  --accent-blue: #2563eb;
+  /* Defined for Light Mode Dynamic Text */
+  --accent-purple: #4f46e5;
+  /* Indigo 600 */
+}
+
+[data-theme='dark'] {
+  --primary-color: #60a5fa;
+  /* Blue 400 */
+  --secondary-color: #cbd5e1;
+  --bg-gradient: linear-gradient(to bottom, #000000, #0b1121);
+  /* Pure Black to Deep Navy */
+  --card-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(56, 189, 248, 0.1);
+  /* Light Blue Tint */
+  --text-main: #ffffff;
+  --text-muted: #cbd5e1;
+  --accent-blue: #22d3ee;
+  /* Cyan Neon */
+  --accent-purple: #818cf8;
+  /* Indigo */
+  --navbar-bg: rgba(0, 0, 0, 0.2);
+  --navbar-border: rgba(56, 189, 248, 0.1);
+  --btn-bg: #3b82f6;
+  --btn-text: #ffffff;
+  --btn-border: #3b82f6;
+  --btn-hover-bg: #1d4ed8;
+  --card-border-color: var(--primary-color);
+
+  /* Glass Pill Variables (Dark Mode) */
+  --glass-pill-bg: rgba(15, 23, 42, 0.6);
+  --glass-pill-border: rgba(56, 189, 248, 0.3);
+  --glass-pill-text-active: #22d3ee;
+  /* Cyan Neon */
+  --glass-pill-text-inactive: #94a3b8;
+  /* Slate 400 */
+
+  --text-body-adaptive: #e2e8f0;
+  /* Bright Slate for Dark Mode Visibility */
+}
+
+[data-theme='dark'] img {
+  filter: brightness(0.9);
+  transition: filter 0.3s ease;
+}
+
+/* Hero Image Custom Handling */
+.hero-image {
+  mix-blend-mode: multiply;
+}
+
+[data-theme='dark'] .hero-image {
+  mix-blend-mode: screen !important;
+  filter: invert(1) brightness(1.5);
+  /* Invert to make white bg black (transparent in screen) and dark lines white */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  /* Cleaner, modern body font */
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  transition: color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  /* Crisp text */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  /* Tech-focused header font */
+  letter-spacing: -0.02em;
+}
+
+/* Make text pop in Dark Mode */
+[data-theme='dark'] body {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  /* separation from background */
+}
+
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Typography Enhancements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em;
+  /* Tighter, more modern */
+  font-weight: 700;
+  /* Bold by default */
+}
+
+p {
+  font-weight: 400;
+  line-height: 1.8;
+  /* Better readability */
+  color: var(--text-muted);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-blue) 50%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  font-weight: 800;
+  /* Extra pop */
+}
+
+/* Reverted to Solid Colors for Cleanliness */
+.text-primary-custom {
+  color: var(--accent-blue) !important;
+}
+
+.social-icon-circle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 1px solid var(--glass-border);
+  background: var(--card-bg);
+  color: var(--text-main);
+}
+
+.social-icon-circle:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background: var(--primary-color);
+  color: var(--btn-text) !important;
+}
+
+/* Ensure typewriter text doesn't break weirdly */
+.Typewriter__wrapper {
+  color: var(--accent-blue);
+  font-weight: 700;
+  display: inline-block;
+}
+
+/* Specific Dark Mode Text Boosts */
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4,
+[data-theme='dark'] h5,
+[data-theme='dark'] h6 {
+  color: #ffffff !important;
+  /* pure white base */
+}
+
+/* Override Bootstrap utilities in Dark Mode */
+[data-theme='dark'] .text-muted {
+  color: var(--text-muted) !important;
+}
+
+[data-theme='dark'] .text-secondary {
+  color: #e2e8f0 !important;
+  /* Make secondary text almost white */
+}
+
+[data-theme='dark'] .lead {
+  color: #f8fafc !important;
+  /* Make lead text bright */
+}
+
+.section-padding {
+  padding: 60px 0;
+}
+
+.tracking-tight {
+  letter-spacing: -0.025em;
+}
+
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+.hover-scale {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-primary-custom {
+  color: var(--accent-blue) !important;
+}
+
+.text-main {
+  color: var(--text-main) !important;
+}
+
+.bg-card-custom {
+  background-color: var(--card-bg) !important;
+}
+
+
+/* Navbar */
+.navbar-custom {
+  background: var(--navbar-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--navbar-border);
+  transition: all 0.3s ease;
+  padding: 1rem 0;
+}
+
+.nav-link {
+  color: var(--text-main) !important;
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin: 0 8px;
+  position: relative;
+  transition: color 0.3s ease;
+  padding: 5px 0 !important;
+}
+
+/* Animated Underline Effect */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-color) !important;
+  font-weight: 600;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Social Icons Circular */
+.social-icon-circle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 1px solid var(--glass-border);
+  background: var(--card-bg);
+  color: var(--text-main);
+}
+
+.social-icon-circle:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background: var(--primary-color);
+  color: var(--btn-text) !important;
+}
+
+/* Buttons */
+.btn-primary-custom {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #7c3aed 100%);
+  /* Blue -> Violet */
+  color: #ffffff !important;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 32px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  /* Violet glow */
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary-custom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  /* FIX: Inherit shape from parent */
+  background: linear-gradient(135deg, #7c3aed 0%, var(--primary-color) 100%);
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.btn-primary-custom:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+  /* Stronger glow */
+  color: #ffffff !important;
+}
+
+.btn-primary-custom:hover::before {
+  opacity: 1;
+}
+
+.btn-outline-custom {
+  background: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--primary-color);
+  border-radius: 12px;
+  padding: 12px 32px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-custom:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.1));
+  transform: translateY(-2px);
+  color: var(--accent-purple);
+  border-color: var(--accent-purple);
+}
+
+/* Contact Form Hover Effect - UPDATED */
+.contact-form-wrapper {
+  transition: all 0.3s ease;
+}
+
+.contact-form-wrapper:hover {
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+/* Custom Form Control Styling */
+.contact-form-wrapper .form-control {
+  border: 2px solid var(--glass-border);
+  background: var(--card-bg);
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+.contact-form-wrapper .form-control:hover,
+.contact-form-wrapper .form-control:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  background: var(--card-bg);
+  color: var(--text-main);
+}
+
+.contact-form-wrapper .form-control::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+  /* Increased opacity */
+}
+
+/* Explicit Dark Mode Placeholder Fix */
+[data-theme='dark'] .contact-form-wrapper .form-control::placeholder {
+  color: #cbd5e1 !important;
+  /* Bright Slate (Slate 300) */
+  opacity: 1 !important;
+}
+
+/* Skill Card Hover Effect */
+/* ... existing styles ... */
+
+/* Sections */
+/* ... existing styles ... */
+
+/* Cards (Glassmorphism + Gradient Tint) */
+/* Cards (Premium Glassmorphism) */
+/* Cards (Premium Glassmorphism) */
+/* Cards (Premium Glassmorphism) */
+.custom-card {
+  /* Default Light Mode */
+  background: linear-gradient(165deg, #ffffff 0%, #f1f5f9 100%);
+  backdrop-filter: blur(12px);
+  color: var(--text-main);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-top: 2px solid #ffffff;
+  border-bottom: 2px solid var(--primary-color);
+  /* Blue accent matches text */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(165deg, #ffffff 0%, #eff6ff 100%);
+  border-color: var(--primary-color);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+  /* Blue glow */
+}
+
+/* Dark Mode Card Overrides */
+[data-theme='dark'] .custom-card {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%);
+  /* Dark Glass */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  /* Reset bottom border */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  color: #f1f5f9;
+}
+
+[data-theme='dark'] .custom-card:hover {
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border-color: var(--accent-blue);
+  /* Cyan glow in dark mode */
+  box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.15);
+}
+
+/* Timeline */
+.timeline-item {
+  border-left: 3px solid var(--primary-color);
+  padding-left: 30px;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.timeline-item::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: var(--card-bg);
+  border: 4px solid var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  left: -9.5px;
+  top: 5px;
+}
+
+/* Education Card Specifics */
+.education-card {
+  transition: all 0.3s ease;
+  border: 2px solid var(--card-border-color);
+  color: var(--text-main);
+}
+
+.education-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(96, 165, 250, 0.15);
+  border-color: var(--accent-blue);
+}
+
+/* Dark Mode Overrides for Bootstrap Utilities */
+[data-theme='dark'] .text-dark {
+  color: #f3f4f6 !important;
+}
+
+[data-theme='dark'] .text-secondary {
+  color: #d1d5db !important;
+}
+
+[data-theme='dark'] .text-muted {
+  color: #9ca3af !important;
+}
+
+[data-theme='dark'] .bg-white {
+  background-color: var(--card-bg) !important;
+  color: var(--text-main);
+}
+
+[data-theme='dark'] .bg-light {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: var(--text-main);
+}
+
+/* Global Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 5px var(--primary-color);
+  }
+
+  50% {
+    box-shadow: 0 0 20px var(--accent-blue), 0 0 10px var(--accent-purple);
+  }
+
+  100% {
+    box-shadow: 0 0 5px var(--primary-color);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Decorative Blobs for filling space */
+.blob {
+  position: absolute;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.4;
+  border-radius: 50%;
+  animation: float 10s infinite ease-in-out;
+}
+
+.blob-1 {
+  width: 300px;
+  height: 300px;
+  background: var(--primary-color);
+  top: 10%;
+  left: -100px;
+}
+
+.blob-2 {
+  width: 250px;
+  height: 250px;
+  background: var(--accent-purple);
+  /* Indigo */
+  bottom: 20%;
+  right: -50px;
+  animation-delay: -2s;
+}
+
+.blob-3 {
+  width: 200px;
+  height: 200px;
+  background: var(--accent-blue);
+  top: 40%;
+  left: 40%;
+  opacity: 0.3;
+  animation-delay: -5s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blob {
+    opacity: 0.2;
+  }
+}
