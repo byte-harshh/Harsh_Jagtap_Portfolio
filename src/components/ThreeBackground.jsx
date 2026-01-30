@@ -33,7 +33,9 @@ const ThreeBackground = ({ theme }) => {
         for (let i = 0; i < count; i++) {
             positions[i * 3] = (Math.random() - 0.5) * 100; // x
             positions[i * 3 + 1] = (Math.random() - 0.5) * 100; // y
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 100; // z
+            // Restrict Z to be behind the camera (which is at z=20) to avoid "giant squares"
+            // Range: -60 to 10
+            positions[i * 3 + 2] = (Math.random() * 70) - 60;
 
             // Randomly assign one of the theme colors
             const mixedColor = Math.random() > 0.5 ? color1 : color2;
