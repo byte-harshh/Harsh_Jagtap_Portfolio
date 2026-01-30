@@ -19,6 +19,12 @@ export default function Contact() {
 
         // Using emailjs.send with explicit data object for better reliability
         const formData = new FormData(formRef.current);
+        if (!formData.get('name') || !formData.get('from_email') || !formData.get('message')) {
+            toast.error("Please fill in all required fields.");
+            setLoading(false);
+            return;
+        }
+
         const data = {
             from_email: formData.get('from_email'),
             name: formData.get('name'),
@@ -59,12 +65,12 @@ export default function Contact() {
         >
             <div className="text-center mb-5">
                 <h2 className="section-title fw-bold mb-4 text-main">Contact Me</h2>
-                <p className="lead mt-n3" style={{ color: 'var(--text-muted)' }}>
+                <p className="mt-n3" style={{ color: 'var(--text-muted)' }}>
                     Please contact me directly at{" "}
                     <a className="fw-bold text-decoration-underline" href="mailto:harshjagtap555@gmail.com" style={{ color: 'var(--accent-blue)' }}>
                         harshjagtap555@gmail.com
                     </a>{" "}
-                    or through this form.
+                    or through this form
                 </p>
             </div>
 
