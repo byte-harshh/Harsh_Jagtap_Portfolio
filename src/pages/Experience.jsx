@@ -45,7 +45,7 @@ const Experience = () => {
                                                 {item.date}
                                             </span>
                                         </div>
-                                        <p className="text-muted mb-0 lh-lg">
+                                        <p className="text-muted mb-0 lh-lg" style={{ textAlign: 'justify' }}>
                                             {item.description}
                                         </p>
 

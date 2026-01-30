@@ -115,7 +115,7 @@ const About = () => {
                                         </div>
                                         <div>
                                             <h5 className="fw-bold mb-2">Web Development</h5>
-                                            <p className="text-muted small lh-base">Building responsive websites using modern technologies like React, HTML5, and CSS3.</p>
+                                            <p className="text-muted small lh-base" style={{ textAlign: 'justify' }}>Building responsive websites using modern technologies like React, HTML5, and CSS3.</p>
                                         </div>
                                     </div>
                                 </Col>
@@ -126,7 +126,7 @@ const About = () => {
                                         </div>
                                         <div>
                                             <h5 className="fw-bold mb-2">Backend Systems</h5>
-                                            <p className="text-muted small lh-base">Developing scalable server-side logic and APIs using Java and Spring Boot.</p>
+                                            <p className="text-muted small lh-base" style={{ textAlign: 'justify' }}>Developing scalable server-side logic and APIs using Java and Spring Boot.</p>
                                         </div>
                                     </div>
                                 </Col>
@@ -137,7 +137,7 @@ const About = () => {
                                         </div>
                                         <div>
                                             <h5 className="fw-bold mb-2">Database Design</h5>
-                                            <p className="text-muted small lh-base">Structuring efficient databases with MySQL to ensure data integrity and speed.</p>
+                                            <p className="text-muted small lh-base" style={{ textAlign: 'justify' }}>Structuring efficient databases with MySQL to ensure data integrity and speed.</p>
                                         </div>
                                     </div>
                                 </Col>
@@ -148,7 +148,7 @@ const About = () => {
                                         </div>
                                         <div>
                                             <h5 className="fw-bold mb-2">Deployment</h5>
-                                            <p className="text-muted small lh-base">Experience with version control (Git) and deploying applications to the cloud.</p>
+                                            <p className="text-muted small lh-base" style={{ textAlign: 'justify' }}>Experience with version control (Git) and deploying applications to the cloud.</p>
                                         </div>
                                     </div>
                                 </Col>
