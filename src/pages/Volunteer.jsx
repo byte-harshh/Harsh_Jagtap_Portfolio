@@ -12,7 +12,7 @@ const Volunteer = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
             >
-                <h2 className="section-title">Volunteer Experience</h2>
+                <h2 className="section-title fw-bold text-main text-center mb-5">Volunteer Experience</h2>
                 <Row className="justify-content-center">
                     <Col lg={8}>
                         <div className="position-relative ps-4 ps-md-5">

@@ -13,8 +13,8 @@ const About = () => {
                 transition={{ duration: 0.5 }}
             >
                 <div className="text-center mb-5">
-                    <h6 className="text-primary-custom fw-bold text-uppercase letter-spacing-2 mb-2">My Story</h6>
-                    <h2 className="display-5 fw-bold text-main">About Me</h2>
+
+                    <h2 className="section-title fw-bold text-main">About Me</h2>
                 </div>
 
                 <Row className="justify-content-center align-items-center">

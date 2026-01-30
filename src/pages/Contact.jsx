@@ -58,7 +58,7 @@ export default function Contact() {
             viewport={{ once: true }}
         >
             <div className="text-center mb-5">
-                <h2 className="section-title display-5 fw-bold mb-4 text-main">Contact Me</h2>
+                <h2 className="section-title fw-bold mb-4 text-main">Contact Me</h2>
                 <p className="lead mt-n3" style={{ color: 'var(--text-muted)' }}>
                     Please contact me directly at{" "}
                     <a className="fw-bold text-decoration-underline" href="mailto:harshjagtap555@gmail.com" style={{ color: 'var(--accent-blue)' }}>

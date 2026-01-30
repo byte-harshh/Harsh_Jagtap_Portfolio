@@ -21,7 +21,7 @@ const Projects = () => {
                     }
                 }}
             >
-                <h2 className="section-title">Featured Projects</h2>
+                <h2 className="section-title fw-bold text-main text-center mb-5">Featured Projects</h2>
                 <HoverEffect items={projectsData} />
             </motion.div>
         </Container>

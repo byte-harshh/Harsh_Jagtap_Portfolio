@@ -22,7 +22,7 @@ const Skills = () => {
                 viewport={{ once: false }}
                 transition={{ duration: 0.5 }}
             >
-                <h2 className="section-title">Technical Skills</h2>
+                <h2 className="section-title fw-bold text-main">Technical Skills</h2>
                 <p className="mb-5 w-75 mx-auto" style={{ color: 'var(--text-body-adaptive)', opacity: 0.9 }}>
                     A comprehensive list of the technologies and tools I've worked with throughout my journey.
                 </p>
