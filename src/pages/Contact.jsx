@@ -5,6 +5,7 @@ import { FaPaperPlane } from "react-icons/fa";
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
 
+
 export default function Contact() {
     const formRef = useRef();
     const [loading, setLoading] = useState(false);
@@ -56,14 +57,16 @@ export default function Contact() {
     return (
         <motion.section
             id="contact"
-            className="mb-5 w-100 text-center container section-padding"
+            className="mb-5 w-100 text-center container section-padding position-relative"
             style={{ maxWidth: "800px" }}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
         >
-            <div className="text-center mb-5">
+
+
+            <div className="text-center mb-5 position-relative z-1">
                 <h2 className="section-title fw-bold mb-4 text-main">Contact Me</h2>
                 <p className="mt-n3" style={{ color: 'var(--text-muted)' }}>
                     Please contact me directly at{" "}
@@ -74,7 +77,7 @@ export default function Contact() {
                 </p>
             </div>
 
-            <div className="contact-form-wrapper p-4 p-md-5 border-0 glass-card rounded-4 position-relative overflow-hidden">
+            <div className="contact-form-wrapper p-4 p-md-5 border-0 glass-card rounded-4 position-relative overflow-hidden z-1">
                 <div className="position-absolute top-0 start-0 w-100 h-100" style={{ background: 'linear-gradient(45deg, transparent, rgba(255,255,255,0.05))', pointerEvents: 'none' }}></div>
 
                 <form ref={formRef} onSubmit={handleSubmit} className="d-flex flex-column gap-3 mx-auto position-relative z-1" style={{ maxWidth: '600px' }}>

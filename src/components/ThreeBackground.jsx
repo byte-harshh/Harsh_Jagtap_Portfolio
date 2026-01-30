@@ -56,6 +56,7 @@ const ThreeBackground = ({ theme }) => {
         const particles = new THREE.Points(geometry, material);
         scene.add(particles);
 
+        // Blockchain Object
         // Animation Loop
         let mouseX = 0;
         let mouseY = 0;
