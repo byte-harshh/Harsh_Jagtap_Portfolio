@@ -56,16 +56,16 @@ const ThreeBackground = ({ theme }) => {
 
 
         // --- 2. Network / Constellation Effect (Active Blockchain Visual) ---
-        const nodeCount = 35; // Reduced from 70 to be "little bit"
+        const nodeCount = 40; // Balanced: Not too much, not too empty
         const nodes = [];
         const nodeGeometry = new THREE.BufferGeometry();
         const nodePositions = new Float32Array(nodeCount * 3);
 
         // Initialize Nodes
         for (let i = 0; i < nodeCount; i++) {
-            const x = (Math.random() - 0.5) * 50;
-            const y = (Math.random() - 0.5) * 50;
-            const z = (Math.random() - 0.5) * 30;
+            const x = (Math.random() - 0.5) * 100; // Wider spread for distance
+            const y = (Math.random() - 0.5) * 100;
+            const z = (Math.random() * 40) - 60; // Push BACK: Range -60 to -20
 
             nodes.push({
                 x, y, z,
@@ -82,9 +82,9 @@ const ThreeBackground = ({ theme }) => {
         nodeGeometry.setAttribute('position', new THREE.BufferAttribute(nodePositions, 3));
         const nodeMaterial = new THREE.PointsMaterial({
             color: theme === 'dark' ? 0x22d3ee : 0x2563eb,
-            size: 0.3,
+            size: 0.5, // Slightly larger to be visible at distance
             transparent: true,
-            opacity: 0.8
+            opacity: 0.9
         });
         const nodePoints = new THREE.Points(nodeGeometry, nodeMaterial);
         scene.add(nodePoints);
@@ -93,7 +93,7 @@ const ThreeBackground = ({ theme }) => {
         const lineMaterial = new THREE.LineBasicMaterial({
             color: theme === 'dark' ? 0x22d3ee : 0x2563eb,
             transparent: true,
-            opacity: 0.12 // Reduced opacity for subtlety
+            opacity: 0.08 // Very subtle
         });
         const lineGeometry = new THREE.BufferGeometry();
         const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
@@ -107,8 +107,8 @@ const ThreeBackground = ({ theme }) => {
         let targetY = 0;
 
         const handleMouseMove = (event) => {
-            mouseX = (event.clientX - window.innerWidth / 2) * 0.1; // Restored sensitivity
-            mouseY = (event.clientY - window.innerHeight / 2) * 0.1;
+            mouseX = (event.clientX - window.innerWidth / 2) * 0.60; // Extreme sensitivity
+            mouseY = (event.clientY - window.innerHeight / 2) * 0.60;
         };
         document.addEventListener('mousemove', handleMouseMove);
 
@@ -117,51 +117,61 @@ const ThreeBackground = ({ theme }) => {
         const animate = () => {
             requestAnimationFrame(animate);
 
+            const elapsedTime = clock.getElapsedTime();
+
             targetX = mouseX * 0.001;
             targetY = mouseY * 0.001;
 
-            // Rotate starfield
-            stars.rotation.y += 0.0003;
-            stars.rotation.x += 0.0001;
+            // Rotate starfield (slower, fluid)
+            stars.rotation.y += 0.0002;
+            stars.rotation.x = Math.sin(elapsedTime * 0.1) * 0.05; // Gentle rocking
 
             // Interactive Rotation (Stars + Network)
-            // Soft easing towards mouse position
-            stars.rotation.y += 0.05 * (targetX - stars.rotation.y);
-            stars.rotation.x += 0.05 * (targetY - stars.rotation.x);
+            // Stronger response
+            stars.rotation.y += 0.08 * (targetX - stars.rotation.y);
+            stars.rotation.x += 0.08 * (targetY - stars.rotation.x);
 
-            nodePoints.rotation.y += 0.05 * (targetX - nodePoints.rotation.y);
-            nodePoints.rotation.x += 0.05 * (targetY - nodePoints.rotation.x);
+            nodePoints.rotation.y += 0.08 * (targetX - nodePoints.rotation.y);
+            nodePoints.rotation.x += 0.08 * (targetY - nodePoints.rotation.x);
 
-            lines.rotation.y += 0.05 * (targetX - lines.rotation.y);
-            lines.rotation.x += 0.05 * (targetY - lines.rotation.x);
+            lines.rotation.y += 0.08 * (targetX - lines.rotation.y);
+            lines.rotation.x += 0.08 * (targetY - lines.rotation.x);
+
+            // Parallax Movement (Camera shift)
+            // Increased parallax effect
+            camera.position.x += (mouseX * 0.01 - camera.position.x) * 0.08;
+            camera.position.y += (-mouseY * 0.01 - camera.position.y) * 0.08;
+            camera.lookAt(scene.position);
 
 
-            // Update Nodes & Draw Lines
+            // Update Nodes & Draw Lines (Adding Flow)
             const positions = nodePoints.geometry.attributes.position.array;
             const linePositions = [];
-            const connectionDistance = 9;
+            const connectionDistance = 15; // Increased distance for far nodes to connect
 
             for (let i = 0; i < nodeCount; i++) {
                 const node = nodes[i];
 
-                // Move
+                // Standard Movement
                 node.x += node.vx;
                 node.y += node.vy;
                 node.z += node.vz;
+
+                // Add Fluid Wave Motion
+                // A vertical offset based on time and x-position
+                const waveY = Math.sin(elapsedTime * 0.5 + node.x * 0.1) * 0.02;
+                node.y += waveY;
 
                 // Bounce off boundaries (soft)
                 if (node.x > 25 || node.x < -25) node.vx *= -1;
                 if (node.y > 25 || node.y < -25) node.vy *= -1;
                 if (node.z > 15 || node.z < -15) node.vz *= -1;
 
-                // Mouse Interaction (repel slightly)
-                // const dx = node.x - mouseX; // Can add complexity here if needed
-
                 positions[i * 3] = node.x;
                 positions[i * 3 + 1] = node.y;
                 positions[i * 3 + 2] = node.z;
 
-                // Check connections
+                // Check connections (Restored)
                 for (let j = i + 1; j < nodeCount; j++) {
                     const nodeB = nodes[j];
                     const distSq = (node.x - nodeB.x) ** 2 + (node.y - nodeB.y) ** 2 + (node.z - nodeB.z) ** 2;
