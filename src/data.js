@@ -143,8 +143,8 @@ export const certificationsData = [
         link: "https://www.credly.com/badges/a1d56634-602a-40fd-9e97-d27d5bc2cfc2/linked_in_profile"
     },
     {
-        title: "Mastering Java & Spring Boot",
-        description: "REST APIs and Microservices",
+        title: "Mastering Java + Spring Boot: REST APIs and Microservices",
+        description: "Issued by Udemy",
         link: "https://udemy-certificate.s3.amazonaws.com/image/UC-20bd6808-0b30-4493-b3be-46cdc2488232.jpg?v=1763056668000"
     },
     {
@@ -160,7 +160,7 @@ export const certificationsData = [
     {
         title: "Artificial Intelligence Primer",
         description: "Issued by Infosys Springboard",
-        link: "#"
+        link: "/Artificial Intelligence Primer Certification.pdf"
     },
     {
         title: "Learn how to use Solidity",

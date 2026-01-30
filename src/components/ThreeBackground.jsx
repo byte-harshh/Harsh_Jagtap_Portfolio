@@ -84,8 +84,8 @@ const ThreeBackground = ({ theme }) => {
             particles.rotation.x += 0.0002;
 
             // Mouse interaction easing
-            particles.rotation.y += 0.05 * (targetX - particles.rotation.y);
-            particles.rotation.x += 0.05 * (targetY - particles.rotation.x);
+            particles.rotation.y += 0.02 * (targetX - particles.rotation.y);
+            particles.rotation.x += 0.02 * (targetY - particles.rotation.x);
 
             // Pulse/Breath effect
             const scale = 1 + Math.sin(elapsedTime * 0.5) * 0.05;

@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import ThreeBackground from './components/ThreeBackground';
 import ScrollReveal from './components/ScrollReveal';
+import ScrollProgress from './components/ScrollProgress';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -33,10 +34,12 @@ function App() {
 
     return (
         <div className="d-flex flex-column min-vh-100 overflow-hidden position-relative">
+            <ScrollProgress />
             {/* Global Decorative Blobs */}
             <div className="blob blob-1"></div>
             <div className="blob blob-2"></div>
             <div className="blob blob-3"></div>
+            <div className="bg-grid"></div>
 
             <ThreeBackground theme={theme} />
             <MyNavbar theme={theme} toggleTheme={toggleTheme} />

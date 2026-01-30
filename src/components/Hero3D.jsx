@@ -58,18 +58,57 @@ const Hero3D = () => {
         const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particlesMesh);
 
-        // Animation
+        // Animation State
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetTiltX = 0;
+        let targetTiltY = 0;
+        let currentTiltX = 0;
+        let currentTiltY = 0;
+        let baseRotation = 0;
+
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        const onDocumentMouseMove = (event) => {
+            mouseX = (event.clientX - windowHalfX);
+            mouseY = (event.clientY - windowHalfY);
+        };
+
+        document.addEventListener('mousemove', onDocumentMouseMove);
+
         const animate = () => {
             requestAnimationFrame(animate);
 
-            // Rotate Main Object
-            wireframeMesh.rotation.x += 0.005;
-            wireframeMesh.rotation.y += 0.005;
-            fillMesh.rotation.x += 0.005;
-            fillMesh.rotation.y += 0.005;
+            // 1. Accumulate Base Rotation (Constant Auto-Rotation)
+            // Slower constant rotation
+            baseRotation += 0.002;
 
-            // Rotate Particles Opposite
-            particlesMesh.rotation.y -= 0.002;
+            // 2. Calculate Tilt Targets based on mouse position
+            targetTiltX = mouseX * 0.001;
+            targetTiltY = mouseY * 0.001;
+
+            // 3. Smoothly Interpolate Current Tilt towards Target Tilt
+            currentTiltX += 0.02 * (targetTiltX - currentTiltX);
+            currentTiltY += 0.02 * (targetTiltY - currentTiltY);
+
+            // 4. Apply Combined Rotation (Base + Tilt)
+            // Note: We apply tilt to specific axes to keep it feeling natural
+
+            // X-Axis Rotation: Constant base speed + Mouse Y tilt
+            const totalRotationX = baseRotation + currentTiltY;
+
+            // Y-Axis Rotation: Constant base speed + Mouse X tilt
+            const totalRotationY = baseRotation + currentTiltX;
+
+            wireframeMesh.rotation.x = totalRotationX;
+            wireframeMesh.rotation.y = totalRotationY;
+
+            fillMesh.rotation.x = totalRotationX;
+            fillMesh.rotation.y = totalRotationY;
+
+            // Rotate Particles Opposite (Slowly)
+            particlesMesh.rotation.y = -baseRotation * 0.5;
 
             renderer.render(scene, camera);
         };
@@ -77,6 +116,7 @@ const Hero3D = () => {
 
         // Cleanup
         return () => {
+            document.removeEventListener('mousemove', onDocumentMouseMove);
             if (mountRef.current && mountRef.current.contains(renderer.domElement)) {
                 mountRef.current.removeChild(renderer.domElement);
             }
@@ -92,7 +132,7 @@ const Hero3D = () => {
     return (
         <div
             ref={mountRef}
-            className="d-flex justify-content-center align-items-center"
+            className="d-flex justify-content-center align-items-center animate-float"
             style={{ width: '400px', height: '400px' }}
         />
     );
