@@ -34,7 +34,17 @@ export const HoverEffect = ({ items, className }) => {
 
                             <Card.Body className="p-3 d-flex flex-column">
                                 <Card.Title className="fw-bold mb-2 text-main">{item.title}</Card.Title>
-                                <Card.Text className="text-muted small mb-3 flex-grow-1" style={{ textAlign: 'justify' }}>
+                                <Card.Text
+                                    className="text-muted small mb-3 flex-grow-1"
+                                    style={{
+                                        textAlign: 'justify',
+                                        display: '-webkit-box',
+                                        WebkitLineClamp: 4,
+                                        WebkitBoxOrient: 'vertical',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis'
+                                    }}
+                                >
                                     {item.description}
                                 </Card.Text>
 
