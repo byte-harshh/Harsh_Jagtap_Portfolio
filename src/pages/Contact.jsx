@@ -79,10 +79,7 @@ export default function Contact() {
                             placeholder="Your email"
                             className="h-14 rounded-3 border px-4 transition-all"
                             style={{
-                                height: "3.5rem",
-                                background: 'rgba(255,255,255,0.4)',
-                                color: 'var(--text-main)',
-                                borderColor: 'var(--glass-border)'
+                                height: "3.5rem"
                             }}
                             required
                         />
@@ -95,10 +92,7 @@ export default function Contact() {
                             placeholder="Your Name"
                             className="h-14 rounded-3 border px-4 transition-all"
                             style={{
-                                height: "3.5rem",
-                                background: 'rgba(255,255,255,0.4)',
-                                color: 'var(--text-main)',
-                                borderColor: 'var(--glass-border)'
+                                height: "3.5rem"
                             }}
                             required
                         />
@@ -111,10 +105,7 @@ export default function Contact() {
                             placeholder="Your message"
                             className="my-3 rounded-3 border p-4 transition-all"
                             style={{
-                                height: "13rem",
-                                background: 'rgba(255,255,255,0.4)', // Slightly more opaque background
-                                color: 'var(--text-main)',
-                                borderColor: 'var(--glass-border)'
+                                height: "13rem"
                             }}
                             required
                         />

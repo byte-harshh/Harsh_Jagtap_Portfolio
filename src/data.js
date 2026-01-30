@@ -1,3 +1,6 @@
+import { FaJava, FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaLink, FaDatabase, FaWifi } from "react-icons/fa";
+import { SiCplusplus, SiMysql, SiSpringboot, SiMongodb, SiCsharp, SiDotnet, SiOracle } from "react-icons/si";
+
 export const links = [
     { name: "Home", hash: "#home" },
     { name: "About", hash: "#about" },
@@ -124,6 +127,11 @@ export const projectsData = [
 
 export const certificationsData = [
     {
+        title: "C Programming",
+        description: "Issued by Great Learning",
+        link: "https://www.mygreatlearning.com/certificate/MMUNOWCQ"
+    },
+    {
         title: "C++ Essentials 1",
         description: "Issued by Cisco",
         link: "https://www.credly.com/badges/47e27bf0-4b3d-4103-a89a-f6a0059523c4/linked_in_profile"
@@ -166,19 +174,19 @@ export const certificationsData = [
 ];
 
 export const skillsData = [
-    "Java",
-    "C++",
-    "IoT Development",
-    "MySQL",
-    "PLSQL",
-    "Spring Boot",
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "React",
-    "MongoDB",
-    "C#",
-    ".NET Framework",
-    "Git",
-    "Blockchain Basics"
+    { name: "Java", icon: FaJava },
+    { name: "C++", icon: SiCplusplus },
+    { name: "IoT Dev", icon: FaWifi },
+    { name: "MySQL", icon: SiMysql },
+    { name: "PLSQL", icon: FaDatabase },
+    { name: "Spring Boot", icon: SiSpringboot },
+    { name: "HTML", icon: FaHtml5 },
+    { name: "CSS", icon: FaCss3Alt },
+    { name: "JavaScript", icon: FaJs },
+    { name: "React", icon: FaReact },
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "C#", icon: SiCsharp },
+    { name: ".NET", icon: SiDotnet },
+    { name: "Git", icon: FaGitAlt },
+    { name: "Blockchain", icon: FaLink }
 ];

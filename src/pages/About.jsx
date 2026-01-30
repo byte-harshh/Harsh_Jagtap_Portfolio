@@ -29,8 +29,8 @@ const About = () => {
                                     overflow: 'hidden',
                                     borderRadius: '12px',
                                     backgroundColor: 'var(--secondary-color)',
-                                    border: '4px solid var(--card-bg)',
-                                    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                                    border: '2px solid var(--accent-blue)',
+                                    boxShadow: '0 0 20px rgba(37, 99, 235, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
                                 }}
                                 className="mx-auto"
                             >
@@ -90,10 +90,10 @@ const About = () => {
                     {/* Text Column */}
                     <Col lg={8}>
                         <div className="p-2">
-                            <p className="lead mb-4 lh-lg" style={{ color: 'var(--text-body-adaptive)', fontWeight: 400 }}>
+                            <p className="lead mb-4 lh-lg" style={{ color: 'var(--text-body-adaptive)', fontWeight: 400, textAlign: 'justify' }}>
                                 I am a passionate <strong className="text-main">Computer Science Engineer</strong> with a keen interest in Full Stack Development. I love creating innovative solutions that solve real-world problems.
                             </p>
-                            <p className="mb-5 lh-lg" style={{ maxWidth: '800px', color: 'var(--text-body-adaptive)', fontWeight: 400 }}>
+                            <p className="mb-5 lh-lg" style={{ maxWidth: '800px', color: 'var(--text-body-adaptive)', fontWeight: 400, textAlign: 'justify' }}>
                                 I have completed my B.Tech in Computer Science and Engineering from G.H. Raisoni College of Engineering, Nagpur. Here are some highlights about me:
                                 <br /><br />
                                 ◽ Passionate about building scalable web applications and exploring Artificial Intelligence.

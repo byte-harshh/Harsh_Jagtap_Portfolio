@@ -5,9 +5,22 @@ const SkillSphere = () => {
     const containerRef = useRef(null);
     const [points, setPoints] = useState([]);
 
-    // Configuration
-    const radius = 250;
-    const dragSpeed = 0.05; // Added manual rotation influence if needed, but keeping auto for smoothness
+    // Responsive Configuration
+    const [dimensions, setDimensions] = useState({ width: 500, height: 500, radius: 250 });
+    const dragSpeed = 0.05;
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = Math.min(window.innerWidth - 40, 500); // Max 500px, subtract padding
+            const height = width;
+            const radius = width / 2;
+            setDimensions({ width, height, radius });
+        };
+
+        handleResize(); // Initial call
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Auto-rotation state
     const rotationRef = useRef({ x: 0, y: 0 });
@@ -69,7 +82,11 @@ const SkillSphere = () => {
     return (
         <div
             className="position-relative d-flex justify-content-center align-items-center mx-auto"
-            style={{ width: '500px', height: '500px', perspective: '1000px' }}
+            style={{
+                width: `${dimensions.width}px`,
+                height: `${dimensions.height}px`,
+                perspective: '1000px'
+            }}
             ref={containerRef}
         >
             {points.map((point, index) => {
@@ -77,10 +94,12 @@ const SkillSphere = () => {
                 // Simple weak perspective projection
                 // Simple weak perspective projection - Adjusted for less aggressive zoom
                 const scale = (2.2 / (2.6 - point.z)); // Max scale ~1.37 (was 2.0), Min scale ~0.61
-                const alpha = (point.z + 1) / 2; // Opacity based on depth
+                const alpha = (point.z + 1.5) / 2.5; // Adjusted alpha for better visibility
 
-                const left = (point.x * radius * scale) + 250; // Center offset X
-                const top = (point.y * radius * scale) + 250;  // Center offset Y
+                const left = (point.x * dimensions.radius * scale) + dimensions.radius; // Center offset X
+                const top = (point.y * dimensions.radius * scale) + dimensions.radius;  // Center offset Y
+
+                const Icon = point.content.icon;
 
                 return (
                     <div
@@ -90,7 +109,7 @@ const SkillSphere = () => {
                             left: `${left}px`,
                             top: `${top}px`,
                             transform: `translate(-50%, -50%) scale(${scale})`,
-                            opacity: Math.max(0.3, alpha),
+                            opacity: Math.max(0.6, alpha),
                             zIndex: Math.floor(scale * 100),
                             fontSize: '1rem',
                             pointerEvents: 'auto', // Allow hover
@@ -108,7 +127,10 @@ const SkillSphere = () => {
                                 textShadow: point.z > 0 ? '0 0 10px rgba(6, 182, 212, 0.3)' : 'none'
                             }}
                         >
-                            {point.content}
+                            <div className="d-flex align-items-center gap-2">
+                                <span className="fs-5"><Icon /></span>
+                                <span>{point.content.name}</span>
+                            </div>
                         </span>
                     </div>
                 );

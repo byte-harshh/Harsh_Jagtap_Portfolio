@@ -621,8 +621,73 @@ p {
 }
 
 /* Responsive */
+@media (max-width: 991px) {
+  .section-padding {
+    padding: 50px 0;
+  }
+
+  .navbar-custom {
+    padding: 0.5rem 0;
+  }
+
+  .blob-1,
+  .blob-2,
+  .blob-3 {
+    opacity: 0.3;
+  }
+}
+
 @media (max-width: 768px) {
+  html {
+    scroll-padding-top: 70px;
+  }
+
+  .section-padding {
+    padding: 40px 0;
+  }
+
+  h1,
+  .display-5 {
+    font-size: 2.5rem !important;
+  }
+
+  h2,
+  .section-title {
+    font-size: 2rem !important;
+  }
+
+  .lead {
+    font-size: 1rem !important;
+  }
+
   .blob {
     opacity: 0.2;
+    transform: scale(0.7);
+  }
+
+  /* Timeline Adjustments for Mobile */
+  .timeline-item {
+    padding-left: 20px;
+  }
+
+  .timeline-item::before {
+    width: 12px;
+    height: 12px;
+    left: -7.5px;
+    border-width: 3px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  h1,
+  .display-5 {
+    font-size: 2rem !important;
+  }
+
+  /* Ensure cards don't touch edges on very small screens */
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 }

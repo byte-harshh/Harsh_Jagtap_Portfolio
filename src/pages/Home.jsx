@@ -37,7 +37,7 @@ const Home = () => {
                                 </span>
                             </h3>
 
-                            <p className="lead mb-4 lh-lg" style={{ fontSize: '1.1rem', color: 'var(--text-body-adaptive)', fontWeight: 400 }}>
+                            <p className="lead mb-4 lh-lg" style={{ fontSize: '1.1rem', color: 'var(--text-body-adaptive)', fontWeight: 400, textAlign: 'justify' }}>
                                 Hello! I'm Harsh Jagtap, a passionate Computer Science Graduate exploring opportunities in Software Development.
                                 I have a focus on IoT, Blockchain, and Machine Learning.
                                 Eager to contribute my technical skills to meaningful initiatives.

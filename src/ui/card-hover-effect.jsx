@@ -22,7 +22,7 @@ export const HoverEffect = ({ items, className }) => {
                         <Card className="custom-card education-card h-100 d-flex flex-column overflow-hidden text-start">
                             {/* Image Section if available */}
                             {item.imageUrl && (
-                                <div className="position-relative overflow-hidden" style={{ height: '200px' }}>
+                                <div className="position-relative overflow-hidden" style={{ height: '160px' }}>
                                     <Card.Img
                                         variant="top"
                                         src={item.imageUrl}
@@ -32,15 +32,15 @@ export const HoverEffect = ({ items, className }) => {
                                 </div>
                             )}
 
-                            <Card.Body className="p-4 d-flex flex-column">
+                            <Card.Body className="p-3 d-flex flex-column">
                                 <Card.Title className="fw-bold mb-2 text-main">{item.title}</Card.Title>
-                                <Card.Text className="text-muted small mb-4 flex-grow-1">
+                                <Card.Text className="text-muted small mb-3 flex-grow-1">
                                     {item.description}
                                 </Card.Text>
 
                                 <div className="mt-auto">
                                     {item.tags && (
-                                        <div className="d-flex flex-wrap gap-2 mb-3">
+                                        <div className="d-flex flex-wrap gap-2 mb-2">
                                             {item.tags.map((tag, i) => (
                                                 <Badge className="border fw-normal" key={i} style={{ backgroundColor: 'var(--glass-border)', color: 'var(--text-main)', fontWeight: '400' }}>
                                                     {tag}

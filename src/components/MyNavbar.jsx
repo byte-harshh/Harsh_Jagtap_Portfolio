@@ -7,6 +7,7 @@ import { FaSun, FaMoon } from 'react-icons/fa';
 
 const MyNavbar = ({ theme, toggleTheme }) => {
     const [scrolled, setScrolled] = useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,6 +22,8 @@ const MyNavbar = ({ theme, toggleTheme }) => {
             expand="lg"
             fixed="top"
             className={`navbar-custom ${scrolled ? 'shadow-sm' : ''}`}
+            expanded={expanded}
+            onToggle={(val) => setExpanded(val)}
         >
             <Container>
                 {/* Wrapped Brand in a div to ensure z-index in flex container on mobile */}
@@ -30,6 +33,7 @@ const MyNavbar = ({ theme, toggleTheme }) => {
                         to="home"
                         smooth={true}
                         duration={500}
+                        onClick={() => setExpanded(false)}
                     >
                         {/* Animated Logo */}
                         {/* 3D Rotating Cube Logo */}
@@ -141,7 +145,7 @@ const MyNavbar = ({ theme, toggleTheme }) => {
 
 
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto text-center mt-3 mt-lg-0 rounded p-3 p-lg-0 d-lg-flex" style={{ background: 'var(--navbar-bg)', backdropFilter: 'blur(10px)' }}>
+                    <Nav className="ms-auto text-center mt-3 mt-lg-0 rounded p-3 p-lg-0 d-lg-flex">
                         {links.map((link) => (
                             <Nav.Link
                                 key={link.hash}
@@ -154,6 +158,7 @@ const MyNavbar = ({ theme, toggleTheme }) => {
                                 className="mx-2 py-2 py-lg-0"
                                 style={{ cursor: 'pointer' }}
                                 activeClass="active"
+                                onClick={() => setExpanded(false)}
                             >
                                 {link.name}
                             </Nav.Link>
