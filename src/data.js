@@ -86,6 +86,7 @@ export const projectsData = [
         tags: ["IoT", "Machine Learning", "ESP32", "Firebase", "C++", "Python"],
         imageUrl: "/CattleTracker.png",
         githubLink: "https://github.com/byte-harshh/Cattle-Tracker-Project",
+        demoLink: "",
         link: "https://github.com/byte-harshh/Cattle-Tracker-Project"
     },
     {
@@ -95,7 +96,8 @@ export const projectsData = [
         tags: ["React", "JavaScript", "CSS"],
         imageUrl: "/ExpenseTracker.png",
         githubLink: "https://github.com/byte-harshh/Expense_Tracker",
-        link: "https://github.com/byte-harshh/Expense_Tracker"
+        demoLink: "https://expense-tracker-chi-three-23.vercel.app/",
+        link: "https://expense-tracker-chi-three-23.vercel.app/"
     },
     {
         title: "CDAC Alumni Management Portal",
@@ -104,6 +106,7 @@ export const projectsData = [
         tags: ["Java", "Spring Boot", "React.js", "MySQL", "Hibernate", "JWT"],
         imageUrl: "/Alumni Portal.png",
         githubLink: "https://github.com/byte-harshh/CDAC-Alumni-Management-Engagement-Portal",
+        demoLink: "",
         link: "https://github.com/byte-harshh/CDAC-Alumni-Management-Engagement-Portal"
     },
     {
@@ -113,6 +116,7 @@ export const projectsData = [
         tags: ["C#", ".NET 8", "WPF", "MVVM", "AI", "Semantic Kernel"],
         imageUrl: "/VehicleDisgnsysTerminal.png",
         githubLink: "https://github.com/byte-harshh/VehicleDiagnosticTerminal",
+        demoLink: "",
         link: "https://github.com/byte-harshh/VehicleDiagnosticTerminal"
     },
     {
@@ -122,6 +126,7 @@ export const projectsData = [
         tags: ["MySQL", "SQL", "Data Validation"],
         imageUrl: "/PAN Validation.png",
         githubLink: "https://github.com/byte-harshh/PAN-Card-Data-Validation-using-MySQL",
+        demoLink: "",
         link: "https://github.com/byte-harshh/PAN-Card-Data-Validation-using-MySQL"
     }
 ];
@@ -175,19 +180,19 @@ export const certificationsData = [
 ];
 
 export const skillsData = [
-    { name: "Java", icon: FaJava },
-    { name: "C++", icon: SiCplusplus },
-    { name: "IoT Dev", icon: FaWifi },
-    { name: "MySQL", icon: SiMysql },
-    { name: "PLSQL", icon: FaDatabase },
-    { name: "Spring Boot", icon: SiSpringboot },
-    { name: "HTML", icon: FaHtml5 },
-    { name: "CSS", icon: FaCss3Alt },
-    { name: "JavaScript", icon: FaJs },
-    { name: "React", icon: FaReact },
-    { name: "MongoDB", icon: SiMongodb },
-    { name: "C#", icon: SiCsharp },
-    { name: ".NET", icon: SiDotnet },
-    { name: "Git", icon: FaGitAlt },
-    { name: "Blockchain", icon: FaLink }
+    { name: "Java", icon: FaJava, color: "#f89820" },
+    { name: "C++", icon: SiCplusplus, color: "#00599C" },
+    { name: "IoT Dev", icon: FaWifi, color: "#32CD32" },
+    { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+    { name: "PLSQL", icon: FaDatabase, color: "#D2691E" },
+    { name: "Spring Boot", icon: SiSpringboot, color: "#6DB33F" },
+    { name: "HTML", icon: FaHtml5, color: "#E34F26" },
+    { name: "CSS", icon: FaCss3Alt, color: "#1572B6" },
+    { name: "JavaScript", icon: FaJs, color: "#F7DF1E" },
+    { name: "React", icon: FaReact, color: "#61DAFB" },
+    { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+    { name: "C#", icon: SiCsharp, color: "#239120" },
+    { name: ".NET", icon: SiDotnet, color: "#512BD4" },
+    { name: "Git", icon: FaGitAlt, color: "#F05032" },
+    { name: "Blockchain", icon: FaLink, color: "#F7931A" }
 ];

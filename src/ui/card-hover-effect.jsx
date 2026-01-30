@@ -59,7 +59,7 @@ export const HoverEffect = ({ items, className }) => {
                                         </div>
                                     )}
 
-                                    <div className="d-flex align-items-center w-100 px-2">
+                                    <div className="d-flex align-items-center w-100 px-2 gap-2">
                                         {item.githubLink && (
                                             <a
                                                 href={item.githubLink}
@@ -71,15 +71,28 @@ export const HoverEffect = ({ items, className }) => {
                                                 <i className="bi bi-github fs-5"></i>
                                             </a>
                                         )}
-                                        {item.link && (
+                                        {/* Show Demo Link if it exists (Projects) */}
+                                        {item.demoLink && (
                                             <a
-                                                href={item.link}
+                                                href={item.demoLink}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="social-icon-circle shadow-sm text-decoration-none ms-auto"
                                                 title="Live Demo"
                                             >
                                                 <i className="bi bi-box-arrow-up-right fs-5"></i>
+                                            </a>
+                                        )}
+                                        {/* Show Regular Link ONLY if it's NOT a project (i.e. no githubLink) - primarily for Certifications */}
+                                        {item.link && !item.githubLink && (
+                                            <a
+                                                href={item.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="social-icon-circle shadow-sm text-decoration-none ms-auto"
+                                                title="View Credential"
+                                            >
+                                                <i className="bi bi-link-45deg fs-4"></i>
                                             </a>
                                         )}
                                     </div>

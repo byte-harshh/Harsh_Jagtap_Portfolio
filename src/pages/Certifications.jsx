@@ -26,7 +26,7 @@ const Certifications = () => {
                     <span className="position-absolute bg-primary bottom-0 start-50 translate-middle-x" style={{ width: '60px', height: '4px', borderRadius: '2px' }}></span>
                 </div>
 
-                <HoverEffect items={certificationsData} />
+                <HoverEffect items={certificationsData} className="small-card" />
             </motion.div>
         </Container>
     );

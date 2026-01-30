@@ -6,6 +6,7 @@ import { Typewriter } from 'react-simple-typewriter';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import TechTitle from '../components/TechTitle';
 import Hero3D from '../components/Hero3D';
+import TechMarquee from '../components/TechMarquee';
 
 
 const Home = () => {
@@ -61,6 +62,9 @@ const Home = () => {
                                     </a>
                                 </div>
                             </div>
+
+                            {/* Tech Stack Marquee */}
+                            <TechMarquee />
 
                         </motion.div>
                     </Col>
