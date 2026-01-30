@@ -48,6 +48,27 @@ const Experience = () => {
                                         <p className="text-muted mb-0 lh-lg">
                                             {item.description}
                                         </p>
+
+                                        {item.skills && (
+                                            <div className="mt-3 pt-3 border-top" style={{ borderColor: 'var(--glass-border)' }}>
+                                                <div className="d-flex flex-wrap gap-2 align-items-center">
+                                                    <span className="fw-bold small text-main opacity-75">Key Skills:</span>
+                                                    {item.skills.map((skill, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="badge rounded-pill fw-normal px-3 py-2 border"
+                                                            style={{
+                                                                backgroundColor: 'var(--glass-pill-bg)',
+                                                                color: 'var(--text-main)',
+                                                                borderColor: 'var(--glass-pill-border)'
+                                                            }}
+                                                        >
+                                                            {skill}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
                                     </motion.div>
                                 </motion.div>
                             ))}

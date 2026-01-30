@@ -40,7 +40,8 @@ export const experiencesData = [
         company: "PhoenixZone Technologies Pvt. Ltd. Pune",
         location: "Pune, Maharashtra, India",
         description:
-            "During my internship at PhoenixZone Technologies Pvt. Ltd., Pune, I worked on a project titled 'IoT-Enhanced Estrus Detection in Dairy Cattle Using Machine Learning.' The company specializes in web development, Android development, IoT, and PHP technologies. My role involved designing and developing an IoT-based system to monitor cattle health and detect estrus cycles. We used sensors like accelerometers, temperature sensors, GPS, and RFID integrated with an ESP32 microcontroller. The data was processed using machine learning models such as Random Forest and Gradient Boosting and stored in Google Firebase. The project also included creating a user-friendly web application for real-time monitoring, helping farmers improve cattle management and productivity. Key Skills: IoT, Google Firebase, Teamwork, Team Leadership.",
+            "During my internship at PhoenixZone Technologies Pvt. Ltd., Pune, I worked on a project titled 'IoT-Enhanced Estrus Detection in Dairy Cattle Using Machine Learning.' The company specializes in web development, Android development, IoT, and PHP technologies. My role involved designing and developing an IoT-based system to monitor cattle health and detect estrus cycles. We used sensors like accelerometers, temperature sensors, GPS, and RFID integrated with an ESP32 microcontroller. The data was processed using machine learning models such as Random Forest and Gradient Boosting and stored in Google Firebase. The project also included creating a user-friendly web application for real-time monitoring, helping farmers improve cattle management and productivity.",
+        skills: ["IoT", "Google Firebase", "Teamwork", "Team Leadership"],
         iconClass: "bi bi-briefcase-fill",
         date: "15 Jun, 2024 - 17 Dec, 2024",
     },
