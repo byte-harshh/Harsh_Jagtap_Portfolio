@@ -93,9 +93,20 @@ const ThreeBackground = ({ theme }) => {
         const lineMaterial = new THREE.LineBasicMaterial({
             color: theme === 'dark' ? 0x22d3ee : 0x2563eb,
             transparent: true,
-            opacity: 0.08
+            opacity: 0.08,
+            vertexColors: false
         });
+
+        // OPTIMIZATION: Pre-allocate line geometry
         const lineGeometry = new THREE.BufferGeometry();
+        // Max possible lines = n * (n-1) / 2. For 60 nodes ~ 1770 lines. 
+        // 2 points per line * 3 coords per point = 6 floats per line.
+        // 1770 * 6 = 10620 floats. Safe to allocate 15000 or dynamically.
+        // Let's go with a safe upper bound.
+        const maxLines = nodeCount * (nodeCount - 1) / 2;
+        const linePositions = new Float32Array(maxLines * 6);
+        lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+
         const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
         scene.add(lines);
 
@@ -110,6 +121,9 @@ const ThreeBackground = ({ theme }) => {
             mouseX = (event.clientX - window.innerWidth / 2) * 0.60; // Extreme sensitivity
             mouseY = (event.clientY - window.innerHeight / 2) * 0.60;
         };
+        // Throttle? For now standard listener is okay if logic inside is light, 
+        // but let's add a small check if needed. 
+        // Actually, logic is just updating 2 vars, it's fine.
         document.addEventListener('mousemove', handleMouseMove);
 
         const clock = new THREE.Clock();
@@ -146,8 +160,9 @@ const ThreeBackground = ({ theme }) => {
 
             // Update Nodes & Draw Lines (Adding Flow)
             const positions = nodePoints.geometry.attributes.position.array;
-            const linePositions = [];
             const connectionDistance = 15; // Increased distance for far nodes to connect
+
+            let lineIdx = 0;
 
             for (let i = 0; i < nodeCount; i++) {
                 const node = nodes[i];
@@ -171,22 +186,30 @@ const ThreeBackground = ({ theme }) => {
                 positions[i * 3 + 1] = node.y;
                 positions[i * 3 + 2] = node.z;
 
-                // Check connections (Restored)
+                // Check connections
                 for (let j = i + 1; j < nodeCount; j++) {
                     const nodeB = nodes[j];
                     const distSq = (node.x - nodeB.x) ** 2 + (node.y - nodeB.y) ** 2 + (node.z - nodeB.z) ** 2;
 
                     if (distSq < connectionDistance ** 2) {
-                        linePositions.push(node.x, node.y, node.z);
-                        linePositions.push(nodeB.x, nodeB.y, nodeB.z);
+                        // OPTIMIZATION: Write directly to pre-allocated buffer
+                        linePositions[lineIdx++] = node.x;
+                        linePositions[lineIdx++] = node.y;
+                        linePositions[lineIdx++] = node.z;
+
+                        linePositions[lineIdx++] = nodeB.x;
+                        linePositions[lineIdx++] = nodeB.y;
+                        linePositions[lineIdx++] = nodeB.z;
                     }
                 }
             }
 
             nodePoints.geometry.attributes.position.needsUpdate = true;
 
-            // Update Lines
-            lines.geometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+            // Updated Lines
+            // Only update the range of used vertices
+            lines.geometry.setDrawRange(0, lineIdx / 3);
+            lines.geometry.attributes.position.needsUpdate = true;
 
             renderer.render(scene, camera);
         };

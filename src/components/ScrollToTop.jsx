@@ -41,9 +41,19 @@ const ScrollToTop = () => {
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", toggleVisibility);
+        let lastScrollTime = 0;
+
+        const handleScroll = () => {
+            const now = Date.now();
+            if (now - lastScrollTime > 100) { // Throttle: check every 100ms
+                toggleVisibility();
+                lastScrollTime = now;
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
         return () => {
-            window.removeEventListener("scroll", toggleVisibility);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
