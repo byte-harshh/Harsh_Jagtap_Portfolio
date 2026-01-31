@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { FaArrowUp } from "react-icons/fa";
+import { animateScroll as scroll } from "react-scroll";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ScrollToTop = () => {
@@ -18,10 +19,7 @@ const ScrollToTop = () => {
     // Set the top cordinate to 0
     // make scrolling smooth
     const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        scroll.scrollToTop();
     };
 
     useEffect(() => {
@@ -46,11 +44,12 @@ const ScrollToTop = () => {
                         variant="primary"
                         className="rounded-circle d-flex align-items-center justify-content-center shadow-lg"
                         style={{
-                            width: "40px",
-                            height: "40px",
-                            backgroundColor: "var(--primary-color)",
+                            width: "45px",
+                            height: "45px",
+                            background: "linear-gradient(135deg, var(--primary-color), var(--accent-purple))",
                             border: "none",
-                            color: "var(--btn-text)"
+                            color: "white",
+                            boxShadow: "0 4px 15px rgba(0,0,0,0.3)"
                         }}
                     >
                         <FaArrowUp />

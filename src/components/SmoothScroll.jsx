@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-// import Lenis from '@studio-freight/lenis'; // Temporarily disabled
+import Lenis from '@studio-freight/lenis';
 
 const SmoothScroll = ({ children }) => {
-    /*
     useEffect(() => {
         const lenis = new Lenis({
             duration: 1.2,
@@ -26,7 +25,6 @@ const SmoothScroll = ({ children }) => {
             lenis.destroy();
         };
     }, []);
-    */
 
     return <>{children}</>;
 };
