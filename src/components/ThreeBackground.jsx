@@ -22,7 +22,7 @@ const ThreeBackground = ({ theme }) => {
 
         // --- 1. Background Starfield (Static/Slow) ---
         const starGeometry = new THREE.BufferGeometry();
-        const starCount = 2000; // Increased count
+        const starCount = 800; // Reduced from 2000 for performance
         const starPositions = new Float32Array(starCount * 3);
         const starColors = new Float32Array(starCount * 3);
 
@@ -44,7 +44,7 @@ const ThreeBackground = ({ theme }) => {
         starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
         const starMaterial = new THREE.PointsMaterial({
-            size: 0.08, // Balanced size
+            size: 0.1, // Slightly larger to compensate for fewer stars
             vertexColors: true,
             transparent: true,
             opacity: 0.8,
@@ -56,7 +56,8 @@ const ThreeBackground = ({ theme }) => {
 
 
         // --- 2. Network / Constellation Effect (Active Blockchain Visual) ---
-        const nodeCount = 60; // Increased nodes for better coverage
+        const nodeCount = 30; // Reduced from 60 (Massive perf gain: 3600 checks -> 900 checks)
+
         const nodes = [];
         const nodeGeometry = new THREE.BufferGeometry();
         const nodePositions = new Float32Array(nodeCount * 3);
