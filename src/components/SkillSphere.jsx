@@ -92,43 +92,56 @@ const SkillSphere = () => {
             {points.map((point, index) => {
                 // Project 3D to 2D
                 // Simple weak perspective projection
-                // Simple weak perspective projection - Adjusted for less aggressive zoom
                 const scale = (2.2 / (2.6 - point.z)); // Max scale ~1.37 (was 2.0), Min scale ~0.61
                 const alpha = (point.z + 1.5) / 2.5; // Adjusted alpha for better visibility
+                const blur = point.z < 0 ? Math.abs(point.z) * 4 : 0; // Blur items in back
 
                 const left = (point.x * dimensions.radius * scale) + dimensions.radius; // Center offset X
                 const top = (point.y * dimensions.radius * scale) + dimensions.radius;  // Center offset Y
 
                 const Icon = point.content.icon;
+                const itemColor = point.content.color || '#06b6d4'; // Fallback to cyan
 
                 return (
                     <div
                         key={index}
                         className="position-absolute d-flex align-items-center justify-content-center"
                         style={{
-                            left: `${left}px`,
-                            top: `${top}px`,
-                            transform: `translate(-50%, -50%) scale(${scale})`,
-                            opacity: Math.max(0.6, alpha),
+                            left: 0,
+                            top: 0,
+                            transform: `translate3d(${left}px, ${top}px, 0) translate(-50%, -50%) scale(${scale})`,
+                            opacity: Math.max(0.3, alpha), // Lower minimum opacity for depth
                             zIndex: Math.floor(scale * 100),
                             fontSize: '1rem',
                             pointerEvents: 'auto', // Allow hover
-                            cursor: 'default'
+                            cursor: 'pointer',
+                            filter: `blur(${blur}px)`, // Apply blur based on depth
+                            willChange: 'transform, opacity, filter'
                         }}
                     >
                         <span
                             className="px-3 py-1 rounded-pill fw-bold text-nowrap transition-all"
                             style={{
-                                background: 'var(--glass-pill-bg)',
-                                border: '1px solid var(--glass-pill-border)',
-                                boxShadow: point.z > 0 ? '0 0 15px rgba(6, 182, 212, 0.2)' : 'none',
-                                color: point.z > 0 ? 'var(--glass-pill-text-active)' : 'var(--glass-pill-text-inactive)',
+                                background: `rgba(${parseInt(itemColor.slice(1, 3), 16)}, ${parseInt(itemColor.slice(3, 5), 16)}, ${parseInt(itemColor.slice(5, 7), 16)}, 0.15)`, // Low opacity background of item color
+                                border: `1px solid ${itemColor}`,
+                                boxShadow: point.z > 0 ? `0 0 20px ${itemColor}66` : 'none', // Glow with item color
+                                color: 'white', // White text for better contrast
                                 backdropFilter: 'blur(4px)',
-                                textShadow: point.z > 0 ? '0 0 10px rgba(6, 182, 212, 0.3)' : 'none'
+                                textShadow: point.z > 0 ? `0 0 10px ${itemColor}` : 'none'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = itemColor;
+                                e.currentTarget.style.color = 'black';
+                                e.currentTarget.style.boxShadow = `0 0 30px ${itemColor}`;
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = `rgba(${parseInt(itemColor.slice(1, 3), 16)}, ${parseInt(itemColor.slice(3, 5), 16)}, ${parseInt(itemColor.slice(5, 7), 16)}, 0.15)`;
+                                e.currentTarget.style.color = 'white';
+                                e.currentTarget.style.boxShadow = point.z > 0 ? `0 0 20px ${itemColor}66` : 'none';
                             }}
                         >
                             <div className="d-flex align-items-center gap-2">
-                                <span className="fs-5"><Icon /></span>
+                                <span className="fs-5" style={{ color: itemColor }}><Icon /></span>
                                 <span>{point.content.name}</span>
                             </div>
                         </span>

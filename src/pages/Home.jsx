@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link as ScrollLink } from 'react-scroll';
 import { motion } from 'framer-motion';
-import { Typewriter } from 'react-simple-typewriter';
+import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import TechTitle from '../components/TechTitle';
 import Hero3D from '../components/Hero3D';
@@ -10,6 +10,14 @@ import TechMarquee from '../components/TechMarquee';
 
 
 const Home = () => {
+    const [text] = useTypewriter({
+        words: ['a Computer Science Engineer', 'a Full Stack Developer', 'Passionate & Adaptable', 'Eager to Learn'],
+        loop: 0,
+        typeSpeed: 80,
+        deleteSpeed: 50,
+        delaySpeed: 1000
+    });
+
     return (
         <section className="min-vh-100 d-flex align-items-center position-relative w-100 py-5 pt-5 mt-5 mt-lg-0">
             <Container>
@@ -23,18 +31,20 @@ const Home = () => {
                         >
                             <TechTitle text="Harsh Jagtap" />
 
-                            <h3 className="h4 text-muted mb-4 fw-normal d-flex align-items-center gap-2">
-                                I am a
-                                <span className="fw-bold" style={{ color: 'var(--accent-blue)' }}>
-                                    <Typewriter
-                                        words={['Computer Science Engineer|', 'Full Stack Developer|', 'Passionate & Adaptable|', 'Eager to Learn|']}
-                                        loop={0}
-                                        cursor
-                                        cursorStyle=''
-                                        typeSpeed={80}
-                                        deleteSpeed={50}
-                                        delaySpeed={1000}
-                                    />
+                            <h3 className="h4 mb-4 fw-bold d-flex align-items-center gap-2" style={{ color: 'var(--text-body-adaptive)' }}>
+                                I am
+                                <span className="fw-bold">
+                                    {text.startsWith('a') ? (
+                                        <>
+                                            <span style={{ color: 'inherit' }}>a</span>
+                                            <span style={{ color: 'var(--accent-blue)' }}>{text.substring(1)}</span>
+                                        </>
+                                    ) : (
+                                        <span style={{ color: 'var(--accent-blue)' }}>{text}</span>
+                                    )}
+                                    <span style={{ color: 'var(--accent-blue)' }}>
+                                        <Cursor cursorStyle='|' />
+                                    </span>
                                 </span>
                             </h3>
 

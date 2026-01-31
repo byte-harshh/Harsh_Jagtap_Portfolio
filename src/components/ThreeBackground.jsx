@@ -22,7 +22,7 @@ const ThreeBackground = ({ theme }) => {
 
         // --- 1. Background Starfield (Static/Slow) ---
         const starGeometry = new THREE.BufferGeometry();
-        const starCount = 1500;
+        const starCount = 2000; // Increased count
         const starPositions = new Float32Array(starCount * 3);
         const starColors = new Float32Array(starCount * 3);
 
@@ -30,9 +30,9 @@ const ThreeBackground = ({ theme }) => {
         const color2 = new THREE.Color(theme === 'dark' ? 0x22d3ee : 0x06b6d4); // Cyan
 
         for (let i = 0; i < starCount; i++) {
-            starPositions[i * 3] = (Math.random() - 0.5) * 120;
-            starPositions[i * 3 + 1] = (Math.random() - 0.5) * 120;
-            starPositions[i * 3 + 2] = (Math.random() * 80) - 60;
+            starPositions[i * 3] = (Math.random() - 0.5) * 200; // Wider spread X
+            starPositions[i * 3 + 1] = (Math.random() - 0.5) * 120; // Spread Y
+            starPositions[i * 3 + 2] = (Math.random() * 90) - 70; // Range -70 to 20
 
             const mixedColor = Math.random() > 0.5 ? color1 : color2;
             starColors[i * 3] = mixedColor.r;
@@ -44,10 +44,10 @@ const ThreeBackground = ({ theme }) => {
         starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
         const starMaterial = new THREE.PointsMaterial({
-            size: 0.1,
+            size: 0.08, // Balanced size
             vertexColors: true,
             transparent: true,
-            opacity: 0.8, // Increased for "alive" feel
+            opacity: 0.8,
             sizeAttenuation: true
         });
 
@@ -56,16 +56,16 @@ const ThreeBackground = ({ theme }) => {
 
 
         // --- 2. Network / Constellation Effect (Active Blockchain Visual) ---
-        const nodeCount = 40; // Balanced: Not too much, not too empty
+        const nodeCount = 60; // Increased nodes for better coverage
         const nodes = [];
         const nodeGeometry = new THREE.BufferGeometry();
         const nodePositions = new Float32Array(nodeCount * 3);
 
         // Initialize Nodes
         for (let i = 0; i < nodeCount; i++) {
-            const x = (Math.random() - 0.5) * 100; // Wider spread for distance
+            const x = (Math.random() - 0.5) * 160; // Spread X (Much wider)
             const y = (Math.random() - 0.5) * 100;
-            const z = (Math.random() * 40) - 60; // Push BACK: Range -60 to -20
+            const z = (Math.random() * 30) - 20;
 
             nodes.push({
                 x, y, z,
@@ -82,7 +82,7 @@ const ThreeBackground = ({ theme }) => {
         nodeGeometry.setAttribute('position', new THREE.BufferAttribute(nodePositions, 3));
         const nodeMaterial = new THREE.PointsMaterial({
             color: theme === 'dark' ? 0x22d3ee : 0x2563eb,
-            size: 0.5, // Slightly larger to be visible at distance
+            size: 0.35, // Balanced size
             transparent: true,
             opacity: 0.9
         });
@@ -93,7 +93,7 @@ const ThreeBackground = ({ theme }) => {
         const lineMaterial = new THREE.LineBasicMaterial({
             color: theme === 'dark' ? 0x22d3ee : 0x2563eb,
             transparent: true,
-            opacity: 0.08 // Very subtle
+            opacity: 0.08
         });
         const lineGeometry = new THREE.BufferGeometry();
         const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
@@ -163,9 +163,9 @@ const ThreeBackground = ({ theme }) => {
                 node.y += waveY;
 
                 // Bounce off boundaries (soft)
-                if (node.x > 25 || node.x < -25) node.vx *= -1;
+                if (node.x > 80 || node.x < -80) node.vx *= -1; // Wider boundary
                 if (node.y > 25 || node.y < -25) node.vy *= -1;
-                if (node.z > 15 || node.z < -15) node.vz *= -1;
+                if (node.z > 15 || node.z < -25) node.vz *= -1;
 
                 positions[i * 3] = node.x;
                 positions[i * 3 + 1] = node.y;

@@ -18,6 +18,7 @@ import ScrollReveal from './components/ScrollReveal';
 import ScrollProgress from './components/ScrollProgress';
 import Preloader from './components/Preloader';
 import FloatingResume from './components/FloatingResume';
+import SmoothScroll from './components/SmoothScroll';
 import NotFound from './pages/NotFound'; // Import NotFound
 import { Toaster } from 'react-hot-toast';
 
@@ -60,7 +61,7 @@ function App() {
 
             <Routes>
                 <Route path="/" element={
-                    <>
+                    <SmoothScroll>
                         <ScrollProgress />
                         <MyNavbar theme={theme} toggleTheme={toggleTheme} />
                         <main className="flex-grow-1">
@@ -119,7 +120,7 @@ function App() {
                         <Footer />
                         <FloatingResume />
                         <ScrollToTop />
-                    </>
+                    </SmoothScroll>
                 } />
                 <Route path="*" element={<NotFound />} />
             </Routes>

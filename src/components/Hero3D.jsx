@@ -39,24 +39,7 @@ const Hero3D = () => {
         const fillMesh = new THREE.Mesh(geometry, fillMaterial);
         scene.add(fillMesh);
 
-        // Particles around it
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 50;
-        const posArray = new Float32Array(particlesCount * 3);
-
-        for (let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 4;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.05,
-            color: 0x6366f1, // Indigo
-            transparent: true,
-            opacity: 0.8
-        });
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
+        // Particles removed for cleaner look
 
         // Animation State
         let mouseX = 0;
@@ -107,8 +90,7 @@ const Hero3D = () => {
             fillMesh.rotation.x = totalRotationX;
             fillMesh.rotation.y = totalRotationY;
 
-            // Rotate Particles Opposite (Slowly)
-            particlesMesh.rotation.y = -baseRotation * 0.5;
+            // Rotate Particles Opposite (Remove)
 
             renderer.render(scene, camera);
         };
@@ -123,8 +105,8 @@ const Hero3D = () => {
             geometry.dispose();
             wireframeMaterial.dispose();
             fillMaterial.dispose();
-            particlesGeometry.dispose();
-            particlesMaterial.dispose();
+            // particlesGeometry.dispose();
+            // particlesMaterial.dispose();
             renderer.dispose();
         };
     }, []);

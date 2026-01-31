@@ -86,7 +86,7 @@ export const projectsData = [
         tags: ["IoT", "Machine Learning", "ESP32", "Firebase", "C++", "Python"],
         imageUrl: "/CattleTracker.png",
         githubLink: "https://github.com/byte-harshh/Cattle-Tracker-Project",
-        demoLink: "",
+        demoLink: "https://cattle-tracker-85ef9.web.app/",
         link: "https://github.com/byte-harshh/Cattle-Tracker-Project"
     },
     {
