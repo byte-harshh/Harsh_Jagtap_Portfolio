@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { FaArrowUp } from "react-icons/fa";
-import { animateScroll as scroll } from "react-scroll";
 import { motion, AnimatePresence } from "framer-motion";
+import { useScroll } from "./SmoothScroll";
 
 const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const { lenis } = useScroll();
 
     // Show button when page is scrolled upto given distance
     const toggleVisibility = () => {
@@ -19,7 +20,24 @@ const ScrollToTop = () => {
     // Set the top cordinate to 0
     // make scrolling smooth
     const scrollToTop = () => {
-        scroll.scrollToTop();
+        const isMobile = window.innerWidth < 992; // Use bootstrap lg breakpoint or verified mobile check
+
+        if (isMobile) {
+            // Native smooth scroll is often smoother on mobile than JS libraries
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        } else if (lenis) {
+            // Use Lenis for desktop consistency
+            lenis.scrollTo(0);
+        } else {
+            // Fallback
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
     };
 
     useEffect(() => {

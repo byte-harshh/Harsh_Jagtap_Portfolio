@@ -1,9 +1,15 @@
-import { useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
 
+const ScrollContext = createContext({ lenis: null });
+
+export const useScroll = () => useContext(ScrollContext);
+
 const SmoothScroll = ({ children }) => {
+    const [lenis, setLenis] = useState(null);
+
     useEffect(() => {
-        const lenis = new Lenis({
+        const lenisInstance = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
@@ -14,19 +20,26 @@ const SmoothScroll = ({ children }) => {
             touchMultiplier: 2,
         });
 
+        setLenis(lenisInstance);
+
         function raf(time) {
-            lenis.raf(time);
+            lenisInstance.raf(time);
             requestAnimationFrame(raf);
         }
 
         requestAnimationFrame(raf);
 
         return () => {
-            lenis.destroy();
+            lenisInstance.destroy();
+            setLenis(null);
         };
     }, []);
 
-    return <>{children}</>;
+    return (
+        <ScrollContext.Provider value={{ lenis }}>
+            {children}
+        </ScrollContext.Provider>
+    );
 };
 
 export default SmoothScroll;
