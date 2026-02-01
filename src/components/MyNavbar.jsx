@@ -21,7 +21,7 @@ const MyNavbar = ({ theme, toggleTheme }) => {
         <Navbar
             expand="lg"
             fixed="top"
-            className={`navbar-custom ${scrolled ? 'shadow-sm' : ''}`}
+            className={`navbar-custom ${scrolled ? 'scrolled shadow-sm' : ''}`}
             expanded={expanded}
             variant={theme}
             onToggle={(val) => setExpanded(val)}

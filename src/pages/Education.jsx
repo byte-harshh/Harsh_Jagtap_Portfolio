@@ -14,7 +14,6 @@ const Education = () => {
             >
                 <div className="text-center mb-5">
                     <h2 className="section-title fw-bold text-main">My Education</h2>
-                    <span className="position-absolute bg-primary bottom-0 start-50 translate-middle-x" style={{ width: '60px', height: '4px', borderRadius: '2px' }}></span>
                 </div>
 
                 <div className="timeline-section ps-2" style={{ maxWidth: '900px', margin: '0 auto' }}>

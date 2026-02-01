@@ -23,7 +23,6 @@ const Certifications = () => {
             >
                 <div className="text-center mb-5">
                     <h2 className="section-title fw-bold text-main">Certifications</h2>
-                    <span className="position-absolute bg-primary bottom-0 start-50 translate-middle-x" style={{ width: '60px', height: '4px', borderRadius: '2px' }}></span>
                 </div>
 
                 <HoverEffect items={certificationsData} className="small-card" />

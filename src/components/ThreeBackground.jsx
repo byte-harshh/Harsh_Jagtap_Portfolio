@@ -23,7 +23,10 @@ const ThreeBackground = ({ theme }) => {
 
         // --- 1. Background Starfield (Static/Slow) ---
         const starGeometry = new THREE.BufferGeometry();
-        const starCount = 600; // Reduced from 800 for performance
+        // RESPONSIVE: Reduce count on mobile/tablet for performance
+        const isMobile = window.innerWidth < 768;
+        const starCount = isMobile ? 400 : 1200;
+
         const starPositions = new Float32Array(starCount * 3);
         const starColors = new Float32Array(starCount * 3);
 
@@ -33,7 +36,7 @@ const ThreeBackground = ({ theme }) => {
         for (let i = 0; i < starCount; i++) {
             starPositions[i * 3] = (Math.random() - 0.5) * 200; // Wider spread X
             starPositions[i * 3 + 1] = (Math.random() - 0.5) * 120; // Spread Y
-            starPositions[i * 3 + 2] = (Math.random() * 50) - 10; // EVEN CLOSER: Range -10 to 40 (Many fly past camera)
+            starPositions[i * 3 + 2] = (Math.random() * 25) - 10; // FIXED: Range -10 to 15 (Stops before camera at 20)
 
             const mixedColor = Math.random() > 0.5 ? color1 : color2;
             starColors[i * 3] = mixedColor.r;
@@ -45,10 +48,10 @@ const ThreeBackground = ({ theme }) => {
         starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
         const starMaterial = new THREE.PointsMaterial({
-            size: 0.15, // Slightly larger for "closer" feel
+            size: 0.18, // Increased size slightly
             vertexColors: true,
             transparent: true,
-            opacity: 0.8,
+            opacity: 0.9, // Higher opacity
             sizeAttenuation: true
         });
 
@@ -57,7 +60,7 @@ const ThreeBackground = ({ theme }) => {
 
 
         // --- 2. Network / Constellation Effect (Active Blockchain Visual) ---
-        const nodeCount = 20; // Kept low for performance
+        const nodeCount = isMobile ? 15 : 40; // Reduced on mobile for CPU safety
 
         const nodes = [];
         const nodeGeometry = new THREE.BufferGeometry();
@@ -67,7 +70,7 @@ const ThreeBackground = ({ theme }) => {
         for (let i = 0; i < nodeCount; i++) {
             const x = (Math.random() - 0.5) * 160; // Spread X (Much wider)
             const y = (Math.random() - 0.5) * 100;
-            const z = (Math.random() * 25) - 5; // EVEN CLOSER: Range -5 to 20
+            const z = (Math.random() * 20) - 5; // FIXED: Range -5 to 15
 
             nodes.push({
                 x, y, z,
@@ -84,9 +87,9 @@ const ThreeBackground = ({ theme }) => {
         nodeGeometry.setAttribute('position', new THREE.BufferAttribute(nodePositions, 3));
         const nodeMaterial = new THREE.PointsMaterial({
             color: theme === 'dark' ? 0x22d3ee : 0x2563eb,
-            size: 0.35, // Balanced size
+            size: 0.45, // Larger nodes
             transparent: true,
-            opacity: 0.9
+            opacity: 1.0 // Fully visible
         });
         const nodePoints = new THREE.Points(nodeGeometry, nodeMaterial);
         scene.add(nodePoints);
@@ -95,7 +98,7 @@ const ThreeBackground = ({ theme }) => {
         const lineMaterial = new THREE.LineBasicMaterial({
             color: theme === 'dark' ? 0x22d3ee : 0x2563eb,
             transparent: true,
-            opacity: 0.08,
+            opacity: 0.15, // Almost double opacity (was 0.08)
             vertexColors: false
         });
 

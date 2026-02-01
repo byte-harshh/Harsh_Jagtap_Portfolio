@@ -52,6 +52,18 @@ function App() {
                 {loading && <Preloader loading={loading} />}
             </AnimatePresence>
 
+            {/* OPTIMIZED FIXED BACKGROUND LAYER */}
+            <div style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                zIndex: -5,
+                background: 'var(--bg-gradient)',
+                pointerEvents: 'none'
+            }} />
+
             {/* Global Decorative Blobs */}
             <div className="blob blob-1"></div>
             <div className="blob blob-2"></div>

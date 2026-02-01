@@ -37,6 +37,7 @@ const TiltCard = ({ children, className = "" }) => {
             style={{
                 perspective: 1000,
                 transformStyle: "preserve-3d",
+                willChange: "transform", // Hardware acceleration hint
             }}
             animate={{
                 rotateX: rotation.x,

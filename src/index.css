@@ -5,6 +5,8 @@
   /* Blue 400 */
   --secondary-color: #cbd5e1;
   --bg-gradient: linear-gradient(to bottom, #000000, #0b1121);
+  --bg-color: #000000;
+  /* Scrollbar track base */
   /* Pure Black to Deep Navy */
   --card-bg: rgba(15, 23, 42, 0.6);
   --glass-border: rgba(56, 189, 248, 0.1);
@@ -17,7 +19,8 @@
   --accent-purple: #818cf8;
   /* Indigo */
 
-  --navbar-bg: rgba(0, 0, 0, 0.2);
+  /* Navbar Dark Mode - Semi-Transparent for Blur */
+  --navbar-bg: rgba(15, 23, 42, 0.85);
   --navbar-border: rgba(56, 189, 248, 0.1);
 
   --btn-bg: #3b82f6;
@@ -46,6 +49,8 @@
   --secondary-color: #475569;
 
   --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 45%, #e0e7ff 100%);
+  --bg-color: #f8fafc;
+  /* Scrollbar track base */
 
   --card-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(203, 213, 225, 0.8);
@@ -55,8 +60,11 @@
   --text-muted: #1e293b;
   /* Darkened */
 
-  --navbar-bg: rgba(255, 255, 255, 0.01);
-  --navbar-border: rgba(255, 255, 255, 0.2);
+  /* Darkened */
+
+  /* Navbar Light Mode - Opaque White */
+  --navbar-bg: rgba(255, 255, 255, 0.95);
+  --navbar-border: rgba(226, 232, 240, 0.8);
 
   --btn-bg: #3b82f6;
   --btn-text: #ffffff;
@@ -105,8 +113,11 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   /* Cleaner, modern body font */
-  background: var(--bg-gradient);
-  background-attachment: fixed;
+  /* Cleaner, modern body font */
+  /* background: var(--bg-gradient); REMOVED for performance */
+  /* background-attachment: fixed; REMOVED for performance */
+  background: transparent;
+  /* Use transparent to let fixed div show */
   color: var(--text-main);
   min-height: 100vh;
   margin: 0;
@@ -117,22 +128,26 @@ body {
 }
 
 /* Custom Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-gradient);
+  background: var(--bg-color);
+  /* Matches website theme (dark/light) */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--primary-color), var(--accent-purple));
-  border-radius: 5px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, var(--primary-color), var(--accent-purple), var(--accent-blue));
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(var(--btn-hover-bg), var(--accent-purple));
+  background: linear-gradient(180deg, var(--accent-blue), var(--primary-color));
+  background-clip: content-box;
 }
 
 h1,
@@ -294,14 +309,23 @@ p {
 
 /* Navbar */
 .navbar-custom {
-  background: var(--navbar-bg);
-  background-color: rgba(0, 0, 0, 0.85);
-  /* Fallback for no blur */
-  /* backdrop-filter: blur(16px); REMOVED */
-  /* -webkit-backdrop-filter: blur(16px); REMOVED */
-  border-bottom: 1px solid var(--navbar-border);
-  transition: all 0.3s ease;
+  background: transparent;
+  /* Default: Mix with website */
+  backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.4s ease;
   padding: 1rem 0;
+}
+
+.navbar-custom.scrolled {
+  background: var(--navbar-bg);
+  /* Use theme-aware opaque/semi-opaque color */
+  /* Enable blur only on scroll if supported and performant */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--navbar-border);
+  padding: 0.8rem 0;
+  /* Slightly compact on scroll */
 }
 
 .nav-link {
@@ -479,7 +503,11 @@ p {
   border-radius: 20px;
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
-  /* Optimize transition properties */
+  /* Optimize transition properties & hardware acceleration */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
 }
 
 .custom-card:hover {
@@ -889,5 +917,37 @@ p {
 
   100% {
     transform: translateX(-50%);
+  }
+}
+
+/* =========================================
+   Accessibility & Reduced Motion
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .blob {
+    animation: none !important;
+    opacity: 0.2;
+    /* Static, faint blobs */
+  }
+
+  .animate-float,
+  .animate-float-delay {
+    animation: none !important;
+  }
+
+  /* Keep essential layout transitions but make them instant */
+  .navbar-custom,
+  .custom-card {
+    transition: none !important;
   }
 }
