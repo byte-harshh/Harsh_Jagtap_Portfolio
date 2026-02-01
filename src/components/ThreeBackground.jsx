@@ -17,12 +17,13 @@ const ThreeBackground = ({ theme }) => {
 
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
+        // PERFORMANCE FIX: Cap pixel ratio to 1.5 to prevent lag on high-res screens
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         mountRef.current.appendChild(renderer.domElement);
 
         // --- 1. Background Starfield (Static/Slow) ---
         const starGeometry = new THREE.BufferGeometry();
-        const starCount = 800; // Reduced from 2000 for performance
+        const starCount = 600; // Reduced from 800 for performance
         const starPositions = new Float32Array(starCount * 3);
         const starColors = new Float32Array(starCount * 3);
 
@@ -56,7 +57,7 @@ const ThreeBackground = ({ theme }) => {
 
 
         // --- 2. Network / Constellation Effect (Active Blockchain Visual) ---
-        const nodeCount = 30; // Reduced from 60 (Massive perf gain: 3600 checks -> 900 checks)
+        const nodeCount = 30; // Kept low for performance
 
         const nodes = [];
         const nodeGeometry = new THREE.BufferGeometry();
@@ -132,6 +133,8 @@ const ThreeBackground = ({ theme }) => {
         const animate = () => {
             requestAnimationFrame(animate);
 
+            // Cap elapsed time to prevent huge jumps if tab is inactive
+            const delta = Math.min(clock.getDelta(), 0.1);
             const elapsedTime = clock.getElapsedTime();
 
             targetX = mouseX * 0.001;
@@ -217,11 +220,17 @@ const ThreeBackground = ({ theme }) => {
 
         animate();
 
-        // Handle Resize
+        // Handle Resize with Debounce
+        let resizeTimeout;
         const handleResize = () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            if (resizeTimeout) clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                // Maintain pixel ratio cap on resize
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            }, 100);
         };
         window.addEventListener('resize', handleResize);
 

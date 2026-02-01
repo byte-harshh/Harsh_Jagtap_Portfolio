@@ -115,8 +115,10 @@ const SkillSphere = () => {
                             fontSize: '1rem',
                             pointerEvents: 'auto', // Allow hover
                             cursor: 'pointer',
+                            cursor: 'pointer',
                             filter: `blur(${blur}px)`, // Apply blur based on depth
-                            willChange: 'transform, opacity, filter'
+                            willChange: 'transform, opacity, filter',
+                            backfaceVisibility: 'hidden' // GPU optimization
                         }}
                     >
                         <span

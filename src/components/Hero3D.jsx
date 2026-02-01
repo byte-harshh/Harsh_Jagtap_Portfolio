@@ -15,6 +15,7 @@ const Hero3D = () => {
         // Renderer
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(400, 400); // Fixed size container
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         mountRef.current.appendChild(renderer.domElement);
 
         // Geometry - Techy Icosahedron

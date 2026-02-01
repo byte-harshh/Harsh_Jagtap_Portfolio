@@ -558,6 +558,7 @@ p {
 
 .small-card .card-text {
   font-size: 0.85rem !important;
+  line-clamp: 2;
   -webkit-line-clamp: 2 !important;
   margin-bottom: 0.5rem !important;
 }
@@ -634,11 +635,13 @@ p {
 /* Decorative Blobs for filling space */
 .blob {
   position: absolute;
-  filter: blur(80px);
+  /* OPTIMIZATION: Reduced blur for performance */
+  filter: blur(60px);
   z-index: -1;
   opacity: 0.4;
   border-radius: 50%;
   animation: float 10s infinite ease-in-out;
+  will-change: transform;
 }
 
 .blob-1 {
