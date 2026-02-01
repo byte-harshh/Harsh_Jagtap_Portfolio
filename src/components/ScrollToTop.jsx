@@ -20,24 +20,10 @@ const ScrollToTop = () => {
     // Set the top cordinate to 0
     // make scrolling smooth
     const scrollToTop = () => {
-        const isMobile = window.innerWidth < 992; // Use bootstrap lg breakpoint or verified mobile check
-
-        if (isMobile) {
-            // Native smooth scroll is often smoother on mobile than JS libraries
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        } else if (lenis) {
-            // Use Lenis for desktop consistency
-            lenis.scrollTo(0);
-        } else {
-            // Fallback
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        }
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     };
 
     useEffect(() => {

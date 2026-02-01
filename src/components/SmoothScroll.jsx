@@ -8,30 +8,12 @@ export const useScroll = () => useContext(ScrollContext);
 const SmoothScroll = ({ children }) => {
     const [lenis, setLenis] = useState(null);
 
+    // Lenis removed for native performance
     useEffect(() => {
-        const lenisInstance = new Lenis({
-            duration: 1.0,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-        });
-
-        setLenis(lenisInstance);
-
-        function raf(time) {
-            lenisInstance.raf(time);
-            requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-
+        // Native scroll behavior cleanup if needed
+        document.documentElement.style.scrollBehavior = 'smooth';
         return () => {
-            lenisInstance.destroy();
-            setLenis(null);
+            document.documentElement.style.scrollBehavior = '';
         };
     }, []);
 
