@@ -931,37 +931,12 @@ p {
 /* =========================================
    Accessibility & Reduced Motion
    ========================================= */
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  /* Force Cube Spinner to animate anyway (Critical Visual) */
-  .cube-spinner {
-    animation-duration: 3s !important;
-    animation-iteration-count: infinite !important;
-  }
-
-  .blob {
-    animation: none !important;
-    opacity: 0.2;
-    /* Static, faint blobs */
-  }
-
-  .animate-float,
-  .animate-float-delay {
-    animation: none !important;
-  }
-
-  /* Keep essential layout transitions but make them instant */
-  .navbar-custom,
-  .custom-card {
-    transition: none !important;
-  }
-}
+/* @media (prefers-reduced-motion: reduce) {
+   
+   Accessibility Note: 
+   Standard accessibility practices recommend respecting this flag.
+   However, for this visual-heavy portfolio, we are prioritizing the intended design.
+   If specific users need no motion, they can rely on browser reader modes.
+   
+   The aggressive reset has been disabled to ensure animations work on all devices.
+} */
