@@ -942,6 +942,12 @@ p {
     scroll-behavior: auto !important;
   }
 
+  /* Force Cube Spinner to animate anyway (Critical Visual) */
+  .cube-spinner {
+    animation-duration: 3s !important;
+    animation-iteration-count: infinite !important;
+  }
+
   .blob {
     animation: none !important;
     opacity: 0.2;
