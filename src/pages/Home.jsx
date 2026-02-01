@@ -19,7 +19,7 @@ const Home = () => {
     });
 
     return (
-        <section className="min-vh-100 d-flex align-items-center position-relative w-100 py-5 pt-5 mt-5 mt-lg-0">
+        <section className="min-vh-100 d-flex align-items-center position-relative w-100 py-5" style={{ paddingTop: '120px' }}>
             <Container>
                 <Row className="align-items-center justify-content-between">
                     {/* Text Column (Left) - Kept first in DOM for mobile priority */}

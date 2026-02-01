@@ -33,7 +33,7 @@ const ThreeBackground = ({ theme }) => {
         for (let i = 0; i < starCount; i++) {
             starPositions[i * 3] = (Math.random() - 0.5) * 200; // Wider spread X
             starPositions[i * 3 + 1] = (Math.random() - 0.5) * 120; // Spread Y
-            starPositions[i * 3 + 2] = (Math.random() * 90) - 70; // Range -70 to 20
+            starPositions[i * 3 + 2] = (Math.random() * 50) - 10; // EVEN CLOSER: Range -10 to 40 (Many fly past camera)
 
             const mixedColor = Math.random() > 0.5 ? color1 : color2;
             starColors[i * 3] = mixedColor.r;
@@ -45,7 +45,7 @@ const ThreeBackground = ({ theme }) => {
         starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
         const starMaterial = new THREE.PointsMaterial({
-            size: 0.1, // Slightly larger to compensate for fewer stars
+            size: 0.15, // Slightly larger for "closer" feel
             vertexColors: true,
             transparent: true,
             opacity: 0.8,
@@ -67,7 +67,7 @@ const ThreeBackground = ({ theme }) => {
         for (let i = 0; i < nodeCount; i++) {
             const x = (Math.random() - 0.5) * 160; // Spread X (Much wider)
             const y = (Math.random() - 0.5) * 100;
-            const z = (Math.random() * 30) - 20;
+            const z = (Math.random() * 25) - 5; // EVEN CLOSER: Range -5 to 20
 
             nodes.push({
                 x, y, z,

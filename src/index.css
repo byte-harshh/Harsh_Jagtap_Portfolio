@@ -98,7 +98,7 @@
 }
 
 html {
-  /* scroll-behavior: smooth;  - Removed to use Lenis Smooth Scroll */
+  scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
 
