@@ -15,7 +15,7 @@ const ThreeBackground = ({ theme }) => {
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 20;
 
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
         renderer.setSize(window.innerWidth, window.innerHeight);
         // PERFORMANCE FIX: Cap pixel ratio to 1.5 to prevent lag on high-res screens
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
@@ -57,7 +57,7 @@ const ThreeBackground = ({ theme }) => {
 
 
         // --- 2. Network / Constellation Effect (Active Blockchain Visual) ---
-        const nodeCount = 30; // Kept low for performance
+        const nodeCount = 20; // Kept low for performance
 
         const nodes = [];
         const nodeGeometry = new THREE.BufferGeometry();

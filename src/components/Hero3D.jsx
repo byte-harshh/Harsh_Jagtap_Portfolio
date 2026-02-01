@@ -13,7 +13,7 @@ const Hero3D = () => {
         camera.position.z = 2.5;
 
         // Renderer
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
         renderer.setSize(400, 400); // Fixed size container
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         mountRef.current.appendChild(renderer.domElement);
